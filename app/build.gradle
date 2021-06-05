@@ -1,9 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
+    def date = new Date()
+    def formattedDate = date.format('dd.MM.yyyy hh.mm a')
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -18,9 +23,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "${"Nord_" + variant.buildType.name + "_apk_v" + variant.versionName + "_" + formattedDate}.apk"
+                }
+            }
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "${"Nord_" + variant.buildType.name + "_apk_v" + variant.versionName + "_" + formattedDate}.apk"
+                }
+            }
         }
     }
     compileOptions {
@@ -37,9 +56,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
+
+    // ... UI
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+
+    // ... Test
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
