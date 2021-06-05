@@ -1,3 +1,7 @@
+/local.properties
+.DS_Store
+/captures
+
 # Built application files
 *.apk
 *.aar
@@ -44,9 +48,23 @@ captures/
 .idea/assetWizardSettings.xml
 .idea/dictionaries
 .idea/libraries
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+
 # Android Studio 3 in .gitignore file.
 .idea/caches
 .idea/modules.xml
+.idea/.name
+.idea/codeStyles/
+.idea/misc.xml
+.idea/runConfigurations.xml
+
 # Comment next line if keeping position of elements in Navigation Editor is relevant for you
 .idea/navEditor.xml
 
@@ -83,6 +101,3 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
-
-# Android Profiling
-*.hprof
