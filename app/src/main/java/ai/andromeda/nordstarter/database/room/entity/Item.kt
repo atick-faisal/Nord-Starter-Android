@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
     tableName = "items"
 )
 data class Item(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     @ColumnInfo(name = "item_name") val name: String
 )
