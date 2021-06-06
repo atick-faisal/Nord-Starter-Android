@@ -1,11 +1,18 @@
 package ai.andromeda.nordstarter
 
-import androidx.appcompat.app.AppCompatActivity
+import ai.andromeda.nordstarter.databinding.ActivityMainBinding
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mainActivityUi: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mainActivityUi = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainActivityUi.root)
     }
 }
