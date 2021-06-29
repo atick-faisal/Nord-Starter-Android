@@ -6,10 +6,5 @@ import androidx.work.WorkerParameters
 
 class DefaultWorker(context: Context, workerParameters: WorkerParameters) :
     BaseWorker(context, workerParameters) {
-    override suspend fun performBackgroundWork() {
-        val a = listOf(1, 3, 4)
-        val b = a[9] + 10
-
-        database.clear()
-    }
+    override suspend fun performBackgroundWork() {}
 }
