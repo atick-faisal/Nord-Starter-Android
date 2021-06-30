@@ -28,7 +28,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // TODO: Modify Default Initializations
+        // TODO: Initial Steps -> Modify Default Initializations
         createNotificationChannel()
         delayedInit()
     }
@@ -60,6 +60,7 @@ class App : Application() {
 
     private fun setUpPeriodicWorks() {
         val defaultWorkRequest = PeriodicWorkRequestBuilder<DefaultWorker>(
+            // TODO: Periodic Work -> Customize Repeating Interval
             DEFAULT_PERIODIC_WORK_INTERVAL,
             TimeUnit.HOURS
         )
