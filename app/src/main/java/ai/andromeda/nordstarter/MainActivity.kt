@@ -14,8 +14,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainActivityUi = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainActivityUi.root)
-
-//        val intent = Intent(this, MyService::class.java)
-//        startService(intent)
     }
 }
