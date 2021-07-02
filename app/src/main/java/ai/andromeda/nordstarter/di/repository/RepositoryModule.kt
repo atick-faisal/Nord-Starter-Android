@@ -1,7 +1,7 @@
 package ai.andromeda.nordstarter.di.repository
 
-import ai.andromeda.nordstarter.database.datastore.UserPreferences
-import ai.andromeda.nordstarter.database.datastore.UserPreferencesImpl
+import ai.andromeda.nordstarter.storage.datastore.UserPreferences
+import ai.andromeda.nordstarter.storage.datastore.UserPreferencesImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

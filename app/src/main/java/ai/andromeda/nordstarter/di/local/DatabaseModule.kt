@@ -1,6 +1,6 @@
 package ai.andromeda.nordstarter.di.local
 
-import ai.andromeda.nordstarter.database.room.AppDatabase
+import ai.andromeda.nordstarter.storage.room.AppDatabase
 import ai.andromeda.nordstarter.utils.ROOM_DATABASE_NAME
 import android.content.Context
 import androidx.room.Room

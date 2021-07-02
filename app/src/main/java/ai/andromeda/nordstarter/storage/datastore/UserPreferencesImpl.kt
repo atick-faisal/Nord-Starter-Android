@@ -1,7 +1,7 @@
-package ai.andromeda.nordstarter.database.datastore
+package ai.andromeda.nordstarter.storage.datastore
 
-import ai.andromeda.nordstarter.database.datastore.state.THEME_KEY
-import ai.andromeda.nordstarter.database.datastore.state.ThemeState
+import ai.andromeda.nordstarter.storage.datastore.state.THEME_KEY
+import ai.andromeda.nordstarter.storage.datastore.state.ThemeState
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit

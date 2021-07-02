@@ -1,4 +1,4 @@
-package ai.andromeda.nordstarter.database.datastore.state
+package ai.andromeda.nordstarter.storage.datastore.state
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 
