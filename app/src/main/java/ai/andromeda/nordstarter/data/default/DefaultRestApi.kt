@@ -1,10 +1,12 @@
 package ai.andromeda.nordstarter.data.default
 
 import ai.andromeda.nordstarter.data.default.model.DefaultItem
-import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface DefaultRestApi {
-    @GET("posts")
-    fun getItems(): Call<List<DefaultItem>>
+    @GET("restaurant/random_restaurant/")
+    fun getItems(
+        @Query("size") size: Int
+    ): List<DefaultItem>
 }
