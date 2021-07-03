@@ -1,6 +1,6 @@
-package ai.andromeda.nordstarter.database.room
+package ai.andromeda.nordstarter.storage.room
 
-import ai.andromeda.nordstarter.database.room.entity.Item
+import ai.andromeda.nordstarter.storage.room.entity.Item
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -23,6 +23,9 @@ interface ItemDao {
 
     @Query("SELECT * FROM items")
     fun getAllItems(): Flow<List<Item>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(items: List<Item>)
 
     @Query("DELETE FROM items")
     suspend fun clear()

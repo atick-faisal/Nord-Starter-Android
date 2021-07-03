@@ -1,6 +1,6 @@
-package ai.andromeda.nordstarter.database.room
+package ai.andromeda.nordstarter.storage.room
 
-import ai.andromeda.nordstarter.database.room.entity.Item
+import ai.andromeda.nordstarter.storage.room.entity.Item
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
