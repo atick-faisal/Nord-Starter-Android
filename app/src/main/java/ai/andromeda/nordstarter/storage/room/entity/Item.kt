@@ -1,4 +1,4 @@
-package ai.andromeda.nordstarter.database.room.entity
+package ai.andromeda.nordstarter.storage.room.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
