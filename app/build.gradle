@@ -63,6 +63,7 @@ dependencies {
     def coroutine_version = "1.4.2"
     def room_version = "2.3.0"
     def work_version = "2.5.0"
+    def hilt_work_version = "1.0.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
@@ -92,6 +93,10 @@ dependencies {
     // ... Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // ... Hilt Work
+    implementation "androidx.hilt:hilt-work:$hilt_work_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_work_version"
 
     // ... Test
     testImplementation 'junit:junit:4.13.2'

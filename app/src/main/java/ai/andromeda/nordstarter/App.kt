@@ -8,6 +8,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -16,9 +17,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @HiltAndroidApp
 class App : Application() {
+
+    @Inject lateinit var workerFactory: HiltWorkerFactory
+
     companion object {
         const val DEFAULT_CHANNEL_ID = "COM.ANDROMEDA.NORD"
         const val DEFAULT_CHANNEL_NAME = "Nord Notifications"
