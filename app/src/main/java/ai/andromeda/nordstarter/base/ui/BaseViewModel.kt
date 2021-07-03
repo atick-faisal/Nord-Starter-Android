@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 open class BaseViewModel : ViewModel() {
-    protected val loader = MutableLiveData<Boolean>()
-    protected val toastMessage = MutableLiveData<String>()
+    val loader = MutableLiveData<Boolean>()
+    val toastMessage = MutableLiveData<String>()
 
     fun handleException(throwable: Throwable) {
         toastMessage.value = throwable.message.toString()
