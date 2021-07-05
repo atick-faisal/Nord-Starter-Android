@@ -7,4 +7,28 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- ... ... Polar Night ... ... -->
+    <color name="polar_night_0">#2E3440</color>
+    <color name="polar_night_1">#3B4252</color>
+    <color name="polar_night_2">#434C5E</color>
+    <color name="polar_night_3">#4C566A</color>
+
+    <!-- ... ... Snow Storm ... ... -->
+    <color name="snow_storm_0">#D8DEE9</color>
+    <color name="snow_storm_1">#E5E9F0</color>
+    <color name="snow_storm_2">#ECEFF4</color>
+
+    <!-- ... ... Frost ... ... -->
+    <color name="frost_0">#8FBCBB</color>
+    <color name="frost_1">#88C0D0</color>
+    <color name="frost_2">#81A1C1</color>
+    <color name="frost_3">#5E81AC</color>
+
+    <!-- ... ... Aurora ... ... -->
+    <color name="aurora_0">#BF616A</color>
+    <color name="aurora_1">#D08770</color>
+    <color name="aurora_2">#EBCB8B</color>
+    <color name="aurora_3">#A3BE8C</color>
+    <color name="aurora_4">#B48EAD</color>
 </resources>
