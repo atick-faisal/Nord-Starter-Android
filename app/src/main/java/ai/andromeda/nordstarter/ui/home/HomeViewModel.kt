@@ -1,7 +1,7 @@
 package ai.andromeda.nordstarter.ui.home
 
-import androidx.lifecycle.ViewModel
+import ai.andromeda.nordstarter.base.ui.BaseViewModel
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel : BaseViewModel() {
     // TODO: Implement the ViewModel
 }
