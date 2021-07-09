@@ -1,11 +1,11 @@
 package ai.andromeda.nordstarter.ui.home.adapter
 
 import ai.andromeda.nordstarter.databinding.ItemDummyBinding
+import ai.andromeda.nordstarter.extensions.loadImage
 import ai.andromeda.nordstarter.storage.room.entity.Item
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 class ItemViewHolder(
     private val binding: ItemDummyBinding,
@@ -23,9 +23,7 @@ class ItemViewHolder(
     fun bind(item: Item) {
         binding.itemName.text = item.name
         binding.itemDescription.text = item.description
-        Glide.with(binding.root)
-            .load(item.logo)
-            .into(binding.itemLogo)
+        binding.itemLogo.loadImage(item.logo)
         binding.root.setOnClickListener { onItemClick(item.id) }
     }
 }
