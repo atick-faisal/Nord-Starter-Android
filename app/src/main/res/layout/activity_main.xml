@@ -12,22 +12,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+        <!-- TODO: To make the appbar scrollable, AppBarLayout must be the
+                   direct child of CoordinatorLayout. However, Making the appbar
+                   scrollable also makes it non-transparent. -->
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorSurface"
+                android:outlineProvider="none"
                 android:elevation="0dp"
-                app:navigationIcon="@drawable/ic_menu_24"
-                app:title="Telegram" />
+                app:elevation="0dp">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="?attr/colorSurface"
+                    android:elevation="8dp"
+                    app:layout_scrollFlags="noScroll" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"

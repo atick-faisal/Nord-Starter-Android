@@ -1,10 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="56dp"
     android:orientation="vertical"
     android:padding="8dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is the title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
@@ -14,17 +75,19 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="100dp"
+        app:cardBackgroundColor="@color/polar_night_0" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/myTextInputLayoutStyle"
-        android:hint="Email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,4 +111,4 @@
         android:layout_height="wrap_content"
         android:text="Chip" />
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

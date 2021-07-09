@@ -5,19 +5,18 @@
         <item name="colorPrimary">@color/deep_purple_500</item>
         <item name="colorPrimaryVariant">@color/deep_purple_600</item>
         <item name="colorOnPrimary">@color/snow_storm_2</item>
+        <item name="colorOnSurface">@color/polar_night_0</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/aurora_3</item>
         <item name="colorSecondaryVariant">@color/aurora_2</item>
         <item name="colorOnSecondary">@color/polar_night_0</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
-<!--        <item name="android:windowLightStatusBar">true</item>-->
-<!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="myTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorControlNormal">@color/polar_night_3</item>
+        <item name="android:textColorPrimary">@color/polar_night_3</item>
     </style>
 </resources>
