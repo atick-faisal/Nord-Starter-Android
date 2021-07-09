@@ -9,5 +9,5 @@
         android:id="@+id/homeFragment"
         android:name="ai.andromeda.nordstarter.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/fragment_home" />
 </navigation>

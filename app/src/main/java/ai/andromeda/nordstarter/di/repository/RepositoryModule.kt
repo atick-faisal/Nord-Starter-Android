@@ -1,7 +1,7 @@
 package ai.andromeda.nordstarter.di.repository
 
-import ai.andromeda.nordstarter.data.dummy.DummyRepository
-import ai.andromeda.nordstarter.data.dummy.DummyRepositoryImpl
+import ai.andromeda.nordstarter.data.home.HomeRepository
+import ai.andromeda.nordstarter.data.home.HomeRepositoryImpl
 import ai.andromeda.nordstarter.storage.datastore.UserPreferences
 import ai.andromeda.nordstarter.storage.datastore.UserPreferencesImpl
 import dagger.Binds
@@ -20,7 +20,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindDefaultItemRepository(
-        defaultItemRepositoryImpl: DummyRepositoryImpl
-    ): DummyRepository
+        defaultItemRepositoryImpl: HomeRepositoryImpl
+    ): HomeRepository
 
 }

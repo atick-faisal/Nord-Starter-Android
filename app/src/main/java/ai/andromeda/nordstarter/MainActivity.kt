@@ -1,10 +1,7 @@
 package ai.andromeda.nordstarter
 
 import ai.andromeda.nordstarter.databinding.ActivityMainBinding
-import ai.andromeda.nordstarter.utils.LOG_TAG
-import ai.andromeda.nordstarter.utils.Resource
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -47,14 +44,6 @@ class MainActivity : AppCompatActivity() {
             setupWithNavController(navView, navController)
             setupActionBarWithNavController(navController, appBarConfiguration)
         }
-
-        viewModel.items.observe(this, { result ->
-            when (result) {
-                is Resource.Loading -> Log.i(LOG_TAG, "LOADING ... ")
-                is Resource.Success -> Log.i(LOG_TAG, "SUCCESS ... " + result.data)
-                is Resource.Error -> Log.i(LOG_TAG, "ERROR ... " + result.error)
-            }
-        })
 
     }
 
