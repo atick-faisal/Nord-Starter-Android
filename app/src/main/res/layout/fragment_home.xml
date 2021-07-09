@@ -16,10 +16,10 @@
         android:paddingBottom="16dp">
 
         <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dummy_items"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
+            android:text="@string/dummy_items" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_dummy_item"

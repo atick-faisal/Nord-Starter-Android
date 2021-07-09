@@ -5,5 +5,5 @@ import ai.andromeda.nordstarter.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
-    fun getItems(): Flow<Resource<List<Item>>>
+    fun getItems(numItems: Int): Flow<Resource<List<Item>>>
 }

@@ -15,21 +15,23 @@ class HomeRepositoryImpl @Inject constructor(
     private val api: HomeRestApi
 ) : HomeRepository {
 
-    override fun getItems(): Flow<Resource<List<Item>>> {
+    override fun getItems(numItems: Int): Flow<Resource<List<Item>>> {
         return networkBoundResource(
             query = {
                 dao.getAllItems()
             },
             fetch = {
-                api.getItems(20)
+                api.getItems(numItems)
             },
-            saveFetchedResult = {
+            saveFetchedResult = { dummyItemList ->
                 database.withTransaction {
                     dao.clear()
                     dao.insertAll(
-                        it.map { defaultItem ->
+                        dummyItemList.map { dummyItem ->
                             Item(
-                                name = defaultItem.name
+                                name = dummyItem.name,
+                                description = dummyItem.description,
+                                logo = dummyItem.logo
                             )
                         }
                     )
