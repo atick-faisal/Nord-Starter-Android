@@ -33,13 +33,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     override fun observerLiveData() {
         viewModel.items.observe(this, { result ->
+            itemAdapter.submitList(result.data)
             when (result) {
                 is Resource.Loading -> Log.i(LOG_TAG, "LOADING ... ")
                 is Resource.Error -> Log.i(LOG_TAG, "ERROR ... " + result.error)
-                is Resource.Success -> {
-                    itemAdapter.submitList(result.data)
-                    Log.i(LOG_TAG, "SUCCESS ... " + result.data)
-                }
+                is Resource.Success -> Log.i(LOG_TAG, "SUCCESS ... " + result.data)
             }
         })
 
