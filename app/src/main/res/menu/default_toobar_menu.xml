@@ -5,5 +5,11 @@
     <item
         android:id="@+id/settingsFragment"
         android:title="@string/settings"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/userInitial"
+        android:title="@string/user"
+        app:actionLayout="@layout/layout_user_initial"
+        app:showAsAction="ifRoom" />
 </menu>
