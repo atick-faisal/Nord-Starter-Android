@@ -1,7 +1,7 @@
 package ai.andromeda.nordstarter.ui.home.adapter
 
 import ai.andromeda.nordstarter.databinding.ItemDummyBinding
-import ai.andromeda.nordstarter.extensions.loadImage
+import ai.andromeda.nordstarter.extensions.loadCircularImage
 import ai.andromeda.nordstarter.storage.room.entity.Item
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,7 +23,7 @@ class ItemViewHolder(
     fun bind(item: Item) {
         binding.itemName.text = item.name
         binding.itemDescription.text = item.description
-        binding.itemLogo.loadImage(item.logo)
+        binding.itemLogo.loadCircularImage(item.logo)
         binding.root.setOnClickListener { onItemClick(item.id) }
     }
 }

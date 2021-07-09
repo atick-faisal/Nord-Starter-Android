@@ -17,3 +17,16 @@ fun AppCompatImageView.loadImage(url: String?) {
         )
         .into(this)
 }
+
+fun AppCompatImageView.loadCircularImage(url: String?) {
+    Glide.with(this.context)
+        .load(url)
+        .transition(withCrossFade())
+        .apply(
+            RequestOptions()
+                .circleCrop()
+                .placeholder(R.drawable.ic_loading_image)
+                .error(R.drawable.ic_broken_image)
+        )
+        .into(this)
+}

@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             when (result) {
                 is Resource.Loading -> Log.i(LOG_TAG, "LOADING ... ")
                 is Resource.Error -> Log.i(LOG_TAG, "ERROR ... " + result.error)
-                is Resource.Success -> Log.i(LOG_TAG, "SUCCESS ... " + result.data)
+                is Resource.Success -> Log.i(LOG_TAG, "SUCCESS ... " + result.data?.size)
             }
         })
 
