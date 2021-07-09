@@ -15,6 +15,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/polar_night_0</item>
         <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">@color/snow_storm_0</item>
+        <item name="android:textColorPrimary">@color/snow_storm_0</item>
     </style>
 
     <style name="myTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

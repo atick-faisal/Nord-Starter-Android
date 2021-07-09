@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Nord Starter</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="dummy_items">Dummy Items</string>
+    <string name="x">X</string>
+    <string name="default_user_initial">A</string>
+    <string name="user">User</string>
 </resources>

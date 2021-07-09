@@ -5,24 +5,17 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 
 open class BaseFragment(
     @LayoutRes layoutRes: Int
 ) : Fragment(layoutRes) {
 
-    protected var binding: ViewBinding? = null
-
     open fun observerLiveData() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         observerLiveData()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 
     protected fun isInternetAvailable(): Boolean {

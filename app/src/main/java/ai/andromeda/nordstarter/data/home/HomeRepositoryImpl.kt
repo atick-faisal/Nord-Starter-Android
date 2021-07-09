@@ -1,4 +1,4 @@
-package ai.andromeda.nordstarter.data.dummy
+package ai.andromeda.nordstarter.data.home
 
 import ai.andromeda.nordstarter.storage.room.AppDatabase
 import ai.andromeda.nordstarter.storage.room.ItemDao
@@ -9,27 +9,29 @@ import androidx.room.withTransaction
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class DummyRepositoryImpl @Inject constructor(
+class HomeRepositoryImpl @Inject constructor(
     private val database: AppDatabase,
     private val dao: ItemDao,
-    private val api: DummyRestApi
-) : DummyRepository {
+    private val api: HomeRestApi
+) : HomeRepository {
 
-    override fun getItems(): Flow<Resource<List<Item>>> {
+    override fun getItems(numItems: Int): Flow<Resource<List<Item>>> {
         return networkBoundResource(
             query = {
                 dao.getAllItems()
             },
             fetch = {
-                api.getItems(20)
+                api.getItems(numItems)
             },
-            saveFetchedResult = {
+            saveFetchedResult = { dummyItemList ->
                 database.withTransaction {
                     dao.clear()
                     dao.insertAll(
-                        it.map { defaultItem ->
+                        dummyItemList.map { dummyItem ->
                             Item(
-                                name = defaultItem.name
+                                name = dummyItem.name,
+                                description = dummyItem.description,
+                                logo = dummyItem.logo
                             )
                         }
                     )
