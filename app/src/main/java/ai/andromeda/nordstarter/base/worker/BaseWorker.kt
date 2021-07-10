@@ -1,12 +1,11 @@
 package ai.andromeda.nordstarter.base.worker
 
-import ai.andromeda.nordstarter.utils.LOG_TAG
 import android.content.Context
-import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 abstract class BaseWorker(context: Context, workerParameters: WorkerParameters) :
     CoroutineWorker(context, workerParameters) {
@@ -19,7 +18,7 @@ abstract class BaseWorker(context: Context, workerParameters: WorkerParameters) 
                 performBackgroundWork()
                 Result.success()
             } catch (exception: Exception) {
-                Log.e(LOG_TAG, "Error while performing background work", exception)
+                Timber.e(exception, "error performing background task!")
                 Result.retry()
             }
         }

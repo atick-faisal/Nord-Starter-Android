@@ -12,7 +12,7 @@ class DefaultWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParameters: WorkerParameters
 ) : BaseWorker(context, workerParameters) {
-    override suspend fun performBackgroundWork() {
 
-    }
+    override suspend fun performBackgroundWork() {}
+
 }

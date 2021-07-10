@@ -17,13 +17,15 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltAndroidApp
 class App : Application(), Configuration.Provider {
 
-    @Inject lateinit var workerFactory: HiltWorkerFactory
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
 
     companion object {
         const val DEFAULT_CHANNEL_ID = "COM.ANDROMEDA.NORD"
@@ -33,10 +35,18 @@ class App : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        initializeLogger()
 
         // TODO: Initial Steps -> Modify Default Initializations
-//        createNotificationChannel()
-//        delayedInit()
+        createNotificationChannel()
+        delayedInit()
+    }
+
+    private fun initializeLogger() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+            Timber.d("starting application... ")
+        }
     }
 
     private fun delayedInit() {
@@ -69,8 +79,7 @@ class App : Application(), Configuration.Provider {
             // TODO: Periodic Work -> Customize Repeating Interval
             DEFAULT_PERIODIC_WORK_INTERVAL,
             TimeUnit.HOURS
-        )
-            .build()
+        ).build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             DEFAULT_PERIODIC_WORK,

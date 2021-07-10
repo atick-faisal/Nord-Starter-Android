@@ -6,10 +6,8 @@ import ai.andromeda.nordstarter.databinding.FragmentHomeBinding
 import ai.andromeda.nordstarter.extensions.hide
 import ai.andromeda.nordstarter.extensions.showToast
 import ai.andromeda.nordstarter.ui.home.adapter.ItemAdapter
-import ai.andromeda.nordstarter.utils.LOG_TAG
 import ai.andromeda.nordstarter.utils.Resource
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -17,6 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
@@ -32,6 +33,10 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
+        binding?.apply {
+            listDummyItem.adapter = itemAdapter
+        }
+
         viewModel.loginStatus.observe(viewLifecycleOwner, { loginStatus ->
             if (!loginStatus) {
                 findNavController().navigate(
@@ -40,7 +45,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             } else {
                 binding?.apply {
                     splashView.hide()
-                    listDummyItem.adapter = itemAdapter
                 }
             }
         })
@@ -52,15 +56,21 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             when (result) {
                 is Resource.Loading -> {
                     loadingProgress?.show()
-                    Log.i(LOG_TAG, "LOADING ... ")
+                    Timber.d("loading data from server... ")
                 }
                 is Resource.Error -> {
                     loadingProgress?.hide()
-                    Log.i(LOG_TAG, "ERROR ... " + result.error)
+                    Timber.d("error loading data from server!")
                 }
                 is Resource.Success -> {
                     loadingProgress?.hide()
-                    Log.i(LOG_TAG, "SUCCESS ... " + result.data?.size)
+                    Timber.d("data successfully loaded!")
+                    Timber.d(
+                        "data: ${
+                            Json { prettyPrint = true }
+                                .encodeToString(result.data)
+                        }"
+                    )
                 }
             }
         })
