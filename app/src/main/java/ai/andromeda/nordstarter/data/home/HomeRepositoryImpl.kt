@@ -1,5 +1,6 @@
 package ai.andromeda.nordstarter.data.home
 
+import ai.andromeda.nordstarter.storage.datastore.UserPreferences
 import ai.andromeda.nordstarter.storage.room.AppDatabase
 import ai.andromeda.nordstarter.storage.room.ItemDao
 import ai.andromeda.nordstarter.storage.room.entity.Item
@@ -12,7 +13,8 @@ import javax.inject.Inject
 class HomeRepositoryImpl @Inject constructor(
     private val database: AppDatabase,
     private val dao: ItemDao,
-    private val api: HomeRestApi
+    private val userPreferences: UserPreferences,
+    private val homeRestApi: HomeRestApi
 ) : HomeRepository {
 
     override fun getItems(numItems: Int): Flow<Resource<List<Item>>> {
@@ -21,7 +23,7 @@ class HomeRepositoryImpl @Inject constructor(
                 dao.getAllItems()
             },
             fetch = {
-                api.getItems(numItems)
+                homeRestApi.getItems(numItems)
             },
             saveFetchedResult = { dummyItemList ->
                 database.withTransaction {
@@ -38,5 +40,9 @@ class HomeRepositoryImpl @Inject constructor(
                 }
             }
         )
+    }
+
+    override fun getLoginStatus(): Flow<Boolean> {
+        return userPreferences.getLoginStatus()
     }
 }

@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
     fun getItems(numItems: Int): Flow<Resource<List<Item>>>
+    fun getLoginStatus(): Flow<Boolean>
 }

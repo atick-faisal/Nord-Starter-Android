@@ -1,7 +1,9 @@
 package ai.andromeda.nordstarter.data.home.model
 
+import com.google.gson.annotations.SerializedName
+
 data class DummyItem(
-    val name: String,
-    val description: String? = null,
-    val logo: String? = null
+    @SerializedName("name") val name: String,
+    @SerializedName("description") val description: String? = null,
+    @SerializedName("logo") val logo: String? = null
 )

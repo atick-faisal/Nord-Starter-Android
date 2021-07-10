@@ -1,5 +1,7 @@
 package ai.andromeda.nordstarter.di.repository
 
+import ai.andromeda.nordstarter.data.authentication.AuthenticationRepository
+import ai.andromeda.nordstarter.data.authentication.AuthenticationRepositoryImpl
 import ai.andromeda.nordstarter.data.home.HomeRepository
 import ai.andromeda.nordstarter.data.home.HomeRepositoryImpl
 import ai.andromeda.nordstarter.storage.datastore.UserPreferences
@@ -19,8 +21,13 @@ abstract class RepositoryModule {
     ): UserPreferences
 
     @Binds
-    abstract fun bindDefaultItemRepository(
-        defaultItemRepositoryImpl: HomeRepositoryImpl
+    abstract fun bindHomeRepository(
+        homeRepositoryImpl: HomeRepositoryImpl
     ): HomeRepository
+
+    @Binds
+    abstract fun bindAuthenticationRepository(
+        authenticationRepositoryImpl: AuthenticationRepositoryImpl
+    ): AuthenticationRepository
 
 }

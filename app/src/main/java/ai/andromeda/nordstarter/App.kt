@@ -35,8 +35,8 @@ class App : Application(), Configuration.Provider {
         super.onCreate()
 
         // TODO: Initial Steps -> Modify Default Initializations
-        createNotificationChannel()
-        delayedInit()
+//        createNotificationChannel()
+//        delayedInit()
     }
 
     private fun delayedInit() {
