@@ -39,10 +39,12 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
         viewModel.loginStatus.observe(viewLifecycleOwner, { loginStatus ->
             if (!loginStatus) {
+                Timber.d("user not authorized ... ")
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToAuthenticationFragment()
                 )
             } else {
+                Timber.d("user is authorized ... ")
                 binding?.apply {
                     splashView.hide()
                 }
@@ -60,11 +62,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 }
                 is Resource.Error -> {
                     loadingProgress?.hide()
-                    Timber.d("error loading data from server!")
+                    Timber.e(result.error, "error loading data from server!")
                 }
                 is Resource.Success -> {
                     loadingProgress?.hide()
-                    Timber.d("data successfully loaded!")
+                    Timber.d("data successfully loaded ... ")
                     Timber.d(
                         "data: ${
                             Json { prettyPrint = true }

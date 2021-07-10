@@ -45,7 +45,7 @@ class App : Application(), Configuration.Provider {
     private fun initializeLogger() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-            Timber.d("starting application... ")
+            Timber.d("starting application ... ")
         }
     }
 
