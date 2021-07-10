@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Nord Starter</string>
 
+    <!--  connectivity  -->
+    <string name="no_internet">Please check your internet connection</string>
+
     <!--  toolbar menu items  -->
     <string name="settings">Settings</string>
     <string name="search">Search</string>

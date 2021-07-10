@@ -19,8 +19,8 @@ abstract class RepositoryModule {
     ): UserPreferences
 
     @Binds
-    abstract fun bindDefaultItemRepository(
-        defaultItemRepositoryImpl: HomeRepositoryImpl
+    abstract fun bindHomeRepository(
+        homeRepositoryImpl: HomeRepositoryImpl
     ): HomeRepository
 
 }

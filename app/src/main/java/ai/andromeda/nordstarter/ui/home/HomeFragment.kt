@@ -3,6 +3,7 @@ package ai.andromeda.nordstarter.ui.home
 import ai.andromeda.nordstarter.R
 import ai.andromeda.nordstarter.base.ui.BaseFragment
 import ai.andromeda.nordstarter.databinding.FragmentHomeBinding
+import ai.andromeda.nordstarter.extensions.hide
 import ai.andromeda.nordstarter.extensions.showToast
 import ai.andromeda.nordstarter.ui.home.adapter.ItemAdapter
 import ai.andromeda.nordstarter.utils.LOG_TAG
@@ -13,6 +14,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,9 +32,18 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        binding?.apply {
-            listDummyItem.adapter = itemAdapter
-        }
+        viewModel.loginStatus.observe(viewLifecycleOwner, { loginStatus ->
+            if (!loginStatus) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToAuthenticationFragment()
+                )
+            } else {
+                binding?.apply {
+                    splashView.hide()
+                    listDummyItem.adapter = itemAdapter
+                }
+            }
+        })
     }
 
     override fun observerLiveData() {

@@ -1,5 +1,6 @@
 package ai.andromeda.nordstarter.data.home
 
+import ai.andromeda.nordstarter.storage.datastore.UserPreferences
 import ai.andromeda.nordstarter.storage.room.AppDatabase
 import ai.andromeda.nordstarter.storage.room.ItemDao
 import ai.andromeda.nordstarter.storage.room.entity.Item
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class HomeRepositoryImpl @Inject constructor(
     private val database: AppDatabase,
     private val dao: ItemDao,
+    private val userPreferences: UserPreferences,
     private val api: HomeRestApi
 ) : HomeRepository {
 
@@ -38,5 +40,9 @@ class HomeRepositoryImpl @Inject constructor(
                 }
             }
         )
+    }
+
+    override fun getLoginStatus(): Flow<Boolean> {
+        return userPreferences.getLoginStatus()
     }
 }

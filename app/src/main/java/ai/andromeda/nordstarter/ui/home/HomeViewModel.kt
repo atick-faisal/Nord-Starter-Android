@@ -8,5 +8,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(repository: HomeRepository) : BaseViewModel() {
+    val loginStatus = repository.getLoginStatus().asLiveData()
     val items = repository.getItems(30).asLiveData()
 }
