@@ -1,11 +1,14 @@
 package ai.andromeda.nordstarter
 
 import ai.andromeda.nordstarter.databinding.ActivityMainBinding
+import ai.andromeda.nordstarter.extensions.hide
+import ai.andromeda.nordstarter.extensions.show
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             )
             setupWithNavController(navView, navController)
             setupActionBarWithNavController(navController, appBarConfiguration)
+            controlActionBarVisibility()
         }
 
     }
@@ -59,5 +63,21 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navigateUp(navController, appBarConfiguration) ||
                 super.onSupportNavigateUp()
+    }
+
+    private fun controlActionBarVisibility() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.authenticationFragment) {
+                binding.apply {
+                    topAppBar.hide()
+                    mainDrawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+                }
+            } else {
+                binding.apply {
+                    topAppBar.show()
+                    mainDrawerLayout.setDrawerLockMode(LOCK_MODE_UNLOCKED)
+                }
+            }
+        }
     }
 }
