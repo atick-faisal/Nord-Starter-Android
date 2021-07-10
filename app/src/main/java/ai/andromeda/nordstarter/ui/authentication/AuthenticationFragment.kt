@@ -3,13 +3,17 @@ package ai.andromeda.nordstarter.ui.authentication
 import ai.andromeda.nordstarter.R
 import ai.andromeda.nordstarter.base.ui.BaseFragment
 import ai.andromeda.nordstarter.databinding.FragmentAuthenticationBinding
+import ai.andromeda.nordstarter.extensions.getValue
 import ai.andromeda.nordstarter.extensions.hide
 import ai.andromeda.nordstarter.extensions.show
 import ai.andromeda.nordstarter.extensions.showToast
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
 
     private val viewModel: AuthenticationViewModel by viewModels()
@@ -26,6 +30,28 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
     }
 
     override fun observerLiveData() {
+        viewModel.login.observe(this, { response ->
+            response?.let {
+                if (it.success) viewModel.saveLoginStatus(true)
+                else viewModel.saveLoginStatus(false)
+            }
+        })
+
+        viewModel.register.observe(this, { response ->
+            response?.let {
+                if (it.success) viewModel.saveLoginStatus(true)
+                else viewModel.saveLoginStatus(false)
+            }
+        })
+
+        viewModel.isLoginStatusSaved.observe(this, { isLoginStatusSaved ->
+            if (isLoginStatusSaved) {
+                findNavController().navigate(
+                    AuthenticationFragmentDirections.actionAuthenticationFragmentToHomeFragment()
+                )
+            }
+        })
+
         viewModel.toastMessage.observe(this, { message ->
             context?.showToast(message)
         })
@@ -34,9 +60,20 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
     private fun authenticate() {
         if (isInternetAvailable()) {
             if (viewModel.alreadyUser) {
-                viewModel.register()
+                binding?.apply {
+                    viewModel.register(
+                        nameEditText.getValue(),
+                        emailEditText.getValue(),
+                        passwordEditText.getValue()
+                    )
+                }
             } else {
-                viewModel.login()
+                binding?.apply {
+                    viewModel.login(
+                        emailEditText.getValue(),
+                        passwordEditText.getValue()
+                    )
+                }
             }
         } else {
             viewModel.toastMessage.value = getString(R.string.no_internet)

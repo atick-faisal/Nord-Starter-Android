@@ -14,7 +14,7 @@ class HomeRepositoryImpl @Inject constructor(
     private val database: AppDatabase,
     private val dao: ItemDao,
     private val userPreferences: UserPreferences,
-    private val api: HomeRestApi
+    private val homeRestApi: HomeRestApi
 ) : HomeRepository {
 
     override fun getItems(numItems: Int): Flow<Resource<List<Item>>> {
@@ -23,7 +23,7 @@ class HomeRepositoryImpl @Inject constructor(
                 dao.getAllItems()
             },
             fetch = {
-                api.getItems(numItems)
+                homeRestApi.getItems(numItems)
             },
             saveFetchedResult = { dummyItemList ->
                 database.withTransaction {

@@ -1,5 +1,6 @@
 package ai.andromeda.nordstarter.di.network
 
+import ai.andromeda.nordstarter.data.authentication.AuthenticationRestApi
 import ai.andromeda.nordstarter.data.home.HomeRestApi
 import dagger.Module
 import dagger.Provides
@@ -18,8 +19,14 @@ object RestServiceModule {
 
     @Singleton
     @Provides
-    fun provideMyApi(retrofit: Retrofit): HomeRestApi {
+    fun provideHomeRestApi(retrofit: Retrofit): HomeRestApi {
         return retrofit.create(HomeRestApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthenticationRestApi(retrofit: Retrofit): AuthenticationRestApi {
+        return retrofit.create(AuthenticationRestApi::class.java)
     }
 
 }
