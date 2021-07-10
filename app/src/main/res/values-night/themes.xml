@@ -20,9 +20,4 @@
         <item name="colorControlNormal">@color/snow_storm_0</item>
         <item name="android:textColorPrimary">@color/snow_storm_0</item>
     </style>
-
-    <style name="myTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/edit_text_box_border</item>
-    </style>
-
 </resources>

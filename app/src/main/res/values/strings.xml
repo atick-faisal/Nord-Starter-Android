@@ -1,9 +1,21 @@
 <resources>
     <string name="app_name">Nord Starter</string>
+
+    <!--  toolbar menu items  -->
     <string name="settings">Settings</string>
     <string name="search">Search</string>
-    <string name="dummy_items">Dummy Items</string>
-    <string name="x">X</string>
     <string name="default_user_initial">A</string>
+
+    <!--  home fragment  -->
+    <string name="dummy_items">Dummy Items</string>
+
+    <!--  authentication fragment  -->
     <string name="user">User</string>
+    <string name="already_a_user">Already a User?</string>
+    <string name="not_a_user">New User? Sign Up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="password">Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="first_and_last_name">First and Last Name</string>
 </resources>

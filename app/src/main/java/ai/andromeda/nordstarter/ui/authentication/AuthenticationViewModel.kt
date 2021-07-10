@@ -5,4 +5,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthenticationViewModel @Inject constructor() : BaseViewModel()
+class AuthenticationViewModel @Inject constructor() : BaseViewModel() {
+    var alreadyUser: Boolean = false
+}
