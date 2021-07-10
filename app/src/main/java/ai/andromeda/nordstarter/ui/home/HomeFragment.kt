@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
     private var binding: FragmentHomeBinding? = null
-    private lateinit var loadingProgress: CircularProgressIndicator
+    private var loadingProgress: CircularProgressIndicator? = null
     private val itemAdapter: ItemAdapter by lazy {
         ItemAdapter(::onItemClick)
     }
@@ -40,15 +40,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             itemAdapter.submitList(result.data)
             when (result) {
                 is Resource.Loading -> {
-                    loadingProgress.show()
+                    loadingProgress?.show()
                     Log.i(LOG_TAG, "LOADING ... ")
                 }
                 is Resource.Error -> {
-                    loadingProgress.hide()
+                    loadingProgress?.hide()
                     Log.i(LOG_TAG, "ERROR ... " + result.error)
                 }
                 is Resource.Success -> {
-                    loadingProgress.hide()
+                    loadingProgress?.hide()
                     Log.i(LOG_TAG, "SUCCESS ... " + result.data?.size)
                 }
             }
@@ -71,6 +71,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        loadingProgress = null
         binding = null
     }
 }
