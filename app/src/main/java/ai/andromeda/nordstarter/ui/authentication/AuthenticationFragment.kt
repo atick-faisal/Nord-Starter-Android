@@ -12,6 +12,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
@@ -32,20 +33,33 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
     override fun observerLiveData() {
         viewModel.login.observe(this, { response ->
             response?.let {
-                if (it.success) viewModel.saveLoginStatus(true)
-                else viewModel.saveLoginStatus(false)
+                if (it.success) {
+                    Timber.d("successfully logged in ...")
+                    viewModel.saveLoginStatus(true)
+                }
+                else {
+                    Timber.d("login failed!")
+                    viewModel.saveLoginStatus(false)
+                }
             }
         })
 
         viewModel.register.observe(this, { response ->
             response?.let {
-                if (it.success) viewModel.saveLoginStatus(true)
-                else viewModel.saveLoginStatus(false)
+                if (it.success) {
+                    Timber.d("successfully logged in ...")
+                    viewModel.saveLoginStatus(true)
+                }
+                else {
+                    Timber.d("login failed!")
+                    viewModel.saveLoginStatus(false)
+                }
             }
         })
 
         viewModel.isLoginStatusSaved.observe(this, { isLoginStatusSaved ->
             if (isLoginStatusSaved) {
+                Timber.d("login session saved ... ")
                 findNavController().navigate(
                     AuthenticationFragmentDirections.actionAuthenticationFragmentToHomeFragment()
                 )
