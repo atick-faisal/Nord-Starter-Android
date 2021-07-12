@@ -1,8 +1,7 @@
 package ai.andromeda.nordstarter
 
 import ai.andromeda.nordstarter.services.background.DefaultWorker
-import ai.andromeda.nordstarter.utils.DEFAULT_PERIODIC_WORK
-import ai.andromeda.nordstarter.utils.DEFAULT_PERIODIC_WORK_INTERVAL
+import ai.andromeda.nordstarter.utils.*
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -27,17 +26,11 @@ class App : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
-    companion object {
-        const val DEFAULT_CHANNEL_ID = "COM.ANDROMEDA.NORD"
-        const val DEFAULT_CHANNEL_NAME = "Nord Notifications"
-        const val DEFAULT_CHANNEL_DESC = "This is the default notification channel"
-    }
-
     override fun onCreate() {
         super.onCreate()
         initializeLogger()
 
-        // TODO: Initial Steps -> Modify Default Initializations
+        // TODO: Modify Default Initializations
         createNotificationChannel()
         delayedInit()
     }
@@ -57,7 +50,10 @@ class App : Application(), Configuration.Provider {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            val defaultChannel = NotificationChannel(
                 DEFAULT_CHANNEL_ID,
                 DEFAULT_CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
@@ -68,9 +64,21 @@ class App : Application(), Configuration.Provider {
                 description = DEFAULT_CHANNEL_DESC
             }
 
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+            val fcmChannel = NotificationChannel(
+                FCM_CHANNEL_ID,
+                FCM_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                setShowBadge(true)
+                enableLights(true)
+                enableVibration(false)
+                description = FCM_CHANNEL_DESC
+            }
+
+            notificationManager.apply {
+                createNotificationChannel(defaultChannel)
+                createNotificationChannel(fcmChannel)
+            }
         }
     }
 

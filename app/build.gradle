@@ -10,7 +10,7 @@ plugins {
 
 android {
     def date = new Date()
-    def formattedDate = date.format('dd.MM.yyyy hh.mm a')
+    def formattedDate = date.format('dd.MM.yyyy hh.mm a').replace(' ', '_')
 
     compileSdkVersion 30
     buildToolsVersion "30.0.3"

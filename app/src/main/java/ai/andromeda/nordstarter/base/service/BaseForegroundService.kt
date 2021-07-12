@@ -1,7 +1,7 @@
 package ai.andromeda.nordstarter.base.service
 
-import ai.andromeda.nordstarter.App
 import ai.andromeda.nordstarter.R
+import ai.andromeda.nordstarter.utils.DEFAULT_CHANNEL_ID
 import android.app.Notification
 import android.app.Service
 import android.content.Intent
@@ -24,7 +24,7 @@ open class BaseForegroundService : Service() {
     open fun initService() {}
     open fun doInBackground() {}
     open fun setupNotification() = NotificationCompat
-        .Builder(this, App.DEFAULT_CHANNEL_ID)
+        .Builder(this, DEFAULT_CHANNEL_ID)
         .setContentTitle(getText(R.string.app_name))
         .build()
 
