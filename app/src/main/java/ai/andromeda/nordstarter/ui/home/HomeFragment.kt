@@ -15,8 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -67,12 +65,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 is Resource.Success -> {
                     loadingProgress?.hide()
                     Timber.d("data successfully loaded ... ")
-                    Timber.d(
-                        "data: ${
-                            Json { prettyPrint = true }
-                                .encodeToString(result.data)
-                        }"
-                    )
                 }
             }
         })

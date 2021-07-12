@@ -101,3 +101,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+
+# Firebase credentials
+app/google-services.json
