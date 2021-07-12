@@ -148,6 +148,8 @@ dependencies {
 
     // ... Firebase
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
 
     // ... Test
     testImplementation 'junit:junit:4.13.2'
