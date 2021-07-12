@@ -54,25 +54,25 @@ class App : Application(), Configuration.Provider {
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             val defaultChannel = NotificationChannel(
-                DEFAULT_CHANNEL_ID,
-                DEFAULT_CHANNEL_NAME,
+                getString(R.string.default_channel_id),
+                getString(R.string.default_channel_name),
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
                 setShowBadge(false)
                 enableLights(false)
                 enableVibration(false)
-                description = DEFAULT_CHANNEL_DESC
+                description = getString(R.string.default_channel_desc)
             }
 
             val fcmChannel = NotificationChannel(
-                FCM_CHANNEL_ID,
-                FCM_CHANNEL_NAME,
+                getString(R.string.fcm_channel_id),
+                getString(R.string.fcm_channel_name),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 setShowBadge(true)
                 enableLights(true)
                 enableVibration(false)
-                description = FCM_CHANNEL_DESC
+                description = getString(R.string.fcm_channel_desc)
             }
 
             notificationManager.apply {
