@@ -1,6 +1,6 @@
 package ai.andromeda.nordstarter.di.network
 
-import androidx.viewbinding.BuildConfig
+import ai.andromeda.nordstarter.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
