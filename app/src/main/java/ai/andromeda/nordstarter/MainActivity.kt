@@ -3,6 +3,8 @@ package ai.andromeda.nordstarter
 import ai.andromeda.nordstarter.databinding.ActivityMainBinding
 import ai.andromeda.nordstarter.extensions.hide
 import ai.andromeda.nordstarter.extensions.show
+import ai.andromeda.nordstarter.services.background.DefaultFirebaseMessagingService
+import ai.andromeda.nordstarter.utils.DEFAULT_FCM_SUBSCRIPTION_TOPIC
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,6 +19,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -28,6 +31,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        DefaultFirebaseMessagingService.subscribeToTopic(DEFAULT_FCM_SUBSCRIPTION_TOPIC) {
+            Timber.d("successfully subscribed to firebase topic ... ")
+        }
 
         binding.apply {
             setContentView(root)
