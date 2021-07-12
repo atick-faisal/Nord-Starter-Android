@@ -83,6 +83,7 @@ dependencies {
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.9.0"
     def timber_version = "4.7.1"
+    def permissions_version = "3.0.0"
     def firebase_version = "28.2.1"
 
     implementation "androidx.core:core-ktx:$ktx_version"
@@ -145,6 +146,9 @@ dependencies {
 
     // ... Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // ... Easy Permissions
+    implementation "pub.devrel:easypermissions:$permissions_version"
 
     // ... Firebase
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")

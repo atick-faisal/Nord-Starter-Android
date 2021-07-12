@@ -30,4 +30,7 @@
     <string name="fcm_channel_id">ai.andromeda.nord.fcm</string>
     <string name="fcm_channel_name">Firebase Cloud Messaging</string>
     <string name="fcm_channel_desc">This is the firebase push notification channel</string>
+
+    <!--  permission rationale  -->
+    <string name="permission_rationale">Please grant the following permissions in order for the app to work</string>
 </resources>
