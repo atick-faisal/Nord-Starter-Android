@@ -5,6 +5,8 @@ import ai.andromeda.nordstarter.extensions.hide
 import ai.andromeda.nordstarter.extensions.show
 import ai.andromeda.nordstarter.services.background.DefaultFirebaseMessagingService
 import ai.andromeda.nordstarter.utils.DEFAULT_FCM_SUBSCRIPTION_TOPIC
+import ai.andromeda.nordstarter.utils.RC_SOME_PERMISSIONS
+import android.Manifest
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -19,14 +21,25 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    EasyPermissions.PermissionCallbacks,
+    EasyPermissions.RationaleCallbacks {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    companion object {
+        val PERMISSIONS = arrayOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             controlActionBarVisibility()
         }
 
+        askForPermissions()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -86,5 +100,55 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    // ... TODO: Handle permissions here
+
+    private fun hasPermissions(): Boolean {
+        return EasyPermissions.hasPermissions(this, *PERMISSIONS)
+    }
+
+    private fun askForPermissions() {
+        if (hasPermissions()) {
+            Timber.d("all permissions have been granted ... ")
+        } else {
+            EasyPermissions.requestPermissions(
+                this@MainActivity,
+                getString(R.string.permission_rationale),
+                RC_SOME_PERMISSIONS,
+                *PERMISSIONS
+            )
+        }
+    }
+
+    @AfterPermissionGranted(RC_SOME_PERMISSIONS)
+    private fun someMethodThatRequiresPermission() {
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(
+            requestCode, permissions, grantResults, this
+        )
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+        Timber.d("[$requestCode] ${perms.size} permission(s) has been granted ... ")
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        Timber.d("[$requestCode] ${perms.size} permission(s) has been denied ... ")
+    }
+
+    override fun onRationaleAccepted(requestCode: Int) {
+        Timber.d("[$requestCode] user agreed to the rationale ... ")
+    }
+
+    override fun onRationaleDenied(requestCode: Int) {
+        Timber.d("[$requestCode] user denied the rationale ... ")
     }
 }
