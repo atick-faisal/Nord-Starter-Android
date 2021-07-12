@@ -5,11 +5,12 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 android {
     def date = new Date()
-    def formattedDate = date.format('dd.MM.yyyy hh.mm a')
+    def formattedDate = date.format('dd.MM.yyyy hh.mm a').replace(' ', '_')
 
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -82,6 +83,7 @@ dependencies {
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.9.0"
     def timber_version = "4.7.1"
+    def firebase_version = "28.2.1"
 
     implementation "androidx.core:core-ktx:$ktx_version"
     implementation "androidx.appcompat:appcompat:$app_compat_version"
@@ -143,6 +145,11 @@ dependencies {
 
     // ... Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // ... Firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebase_version")
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
 
     // ... Test
     testImplementation 'junit:junit:4.13.2'

@@ -21,4 +21,13 @@
     <string name="password">Password</string>
     <string name="email_address">Email Address</string>
     <string name="first_and_last_name">First and Last Name</string>
+
+    <!-- notification channels  -->
+    <!-- TODO: Change the default notification channel information -->
+    <string name="default_channel_id">ai.andromeda.nord.default</string>
+    <string name="default_channel_name">Nord Notifications</string>
+    <string name="default_channel_desc">This is the default notification channel</string>
+    <string name="fcm_channel_id">ai.andromeda.nord.fcm</string>
+    <string name="fcm_channel_name">Firebase Cloud Messaging</string>
+    <string name="fcm_channel_desc">This is the firebase push notification channel</string>
 </resources>

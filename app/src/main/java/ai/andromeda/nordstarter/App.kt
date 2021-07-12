@@ -1,8 +1,7 @@
 package ai.andromeda.nordstarter
 
 import ai.andromeda.nordstarter.services.background.DefaultWorker
-import ai.andromeda.nordstarter.utils.DEFAULT_PERIODIC_WORK
-import ai.andromeda.nordstarter.utils.DEFAULT_PERIODIC_WORK_INTERVAL
+import ai.andromeda.nordstarter.utils.*
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -27,17 +26,11 @@ class App : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
-    companion object {
-        const val DEFAULT_CHANNEL_ID = "COM.ANDROMEDA.NORD"
-        const val DEFAULT_CHANNEL_NAME = "Nord Notifications"
-        const val DEFAULT_CHANNEL_DESC = "This is the default notification channel"
-    }
-
     override fun onCreate() {
         super.onCreate()
         initializeLogger()
 
-        // TODO: Initial Steps -> Modify Default Initializations
+        // TODO: Modify Default Initializations
         createNotificationChannel()
         delayedInit()
     }
@@ -57,20 +50,35 @@ class App : Application(), Configuration.Provider {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                DEFAULT_CHANNEL_ID,
-                DEFAULT_CHANNEL_NAME,
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            val defaultChannel = NotificationChannel(
+                getString(R.string.default_channel_id),
+                getString(R.string.default_channel_name),
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
                 setShowBadge(false)
                 enableLights(false)
                 enableVibration(false)
-                description = DEFAULT_CHANNEL_DESC
+                description = getString(R.string.default_channel_desc)
             }
 
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+            val fcmChannel = NotificationChannel(
+                getString(R.string.fcm_channel_id),
+                getString(R.string.fcm_channel_name),
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                setShowBadge(true)
+                enableLights(true)
+                enableVibration(false)
+                description = getString(R.string.fcm_channel_desc)
+            }
+
+            notificationManager.apply {
+                createNotificationChannel(defaultChannel)
+                createNotificationChannel(fcmChannel)
+            }
         }
     }
 
