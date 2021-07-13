@@ -26,6 +26,9 @@ class ItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val currentItem = getItem(position)
+        currentItem?.let { item ->
+            holder.bind(item)
+        }
     }
 }

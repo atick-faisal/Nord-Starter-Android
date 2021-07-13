@@ -36,6 +36,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         }
 
         viewModel.loginStatus.observe(viewLifecycleOwner, { loginStatus ->
+            Timber.d("logging status [$loginStatus]")
             if (!loginStatus) {
                 Timber.d("user not authorized ... ")
                 findNavController().navigate(
