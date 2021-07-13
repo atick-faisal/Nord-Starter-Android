@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
-    android:background="@color/white"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView

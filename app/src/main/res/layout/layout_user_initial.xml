@@ -22,7 +22,7 @@
         android:gravity="center"
         android:paddingBottom="2dp"
         android:text="@string/default_user_initial"
-        android:textColor="@color/snow_storm_0"
+        android:textColor="?attr/colorOnSecondary"
         android:textSize="18sp" />
 
 </FrameLayout>
