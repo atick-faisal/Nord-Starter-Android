@@ -15,7 +15,7 @@ class ItemViewHolder(
     companion object {
         fun from(parent: ViewGroup, onItemClick: (Long) -> Unit): ItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ItemDummyBinding.inflate(layoutInflater)
+            val binding = ItemDummyBinding.inflate(layoutInflater, parent, false)
             return ItemViewHolder(binding, onItemClick)
         }
     }
