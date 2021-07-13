@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(),
     EasyPermissions.PermissionCallbacks,
     EasyPermissions.RationaleCallbacks {
 
-    private lateinit var binding: ActivityMainBinding
+    private var binding: ActivityMainBinding? = null
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(),
             Timber.d("successfully subscribed to firebase topic ... ")
         }
 
-        binding.apply {
+        binding?.apply {
             setContentView(root)
             setSupportActionBar(topAppBar)
             navController = (
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(),
         askForPermissions()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.default_toobar_menu, menu)
         return true
     }
@@ -89,12 +89,12 @@ class MainActivity : AppCompatActivity(),
     private fun controlActionBarVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.authenticationFragment) {
-                binding.apply {
+                binding?.apply {
                     topAppBar.hide()
                     mainDrawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
                 }
             } else {
-                binding.apply {
+                binding?.apply {
                     topAppBar.show()
                     mainDrawerLayout.setDrawerLockMode(LOCK_MODE_UNLOCKED)
                 }
@@ -150,5 +150,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun onRationaleDenied(requestCode: Int) {
         Timber.d("[$requestCode] user denied the rationale ... ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

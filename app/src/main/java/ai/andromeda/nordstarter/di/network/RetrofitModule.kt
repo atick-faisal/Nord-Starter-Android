@@ -20,10 +20,13 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofitClient(
+        converterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(converterFactory)
             .client(okHttpClient)
             .build()
     }
