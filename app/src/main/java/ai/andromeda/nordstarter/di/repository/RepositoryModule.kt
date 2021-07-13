@@ -4,6 +4,8 @@ import ai.andromeda.nordstarter.data.authentication.AuthenticationRepository
 import ai.andromeda.nordstarter.data.authentication.AuthenticationRepositoryImpl
 import ai.andromeda.nordstarter.data.home.HomeRepository
 import ai.andromeda.nordstarter.data.home.HomeRepositoryImpl
+import ai.andromeda.nordstarter.data.settings.SettingsRepository
+import ai.andromeda.nordstarter.data.settings.SettingsRepositoryImpl
 import ai.andromeda.nordstarter.storage.datastore.UserPreferences
 import ai.andromeda.nordstarter.storage.datastore.UserPreferencesImpl
 import dagger.Binds
@@ -29,5 +31,10 @@ abstract class RepositoryModule {
     abstract fun bindAuthenticationRepository(
         authenticationRepositoryImpl: AuthenticationRepositoryImpl
     ): AuthenticationRepository
+
+    @Binds
+    abstract fun bindSettingsRepository(
+        settingsRepositoryImpl: SettingsRepositoryImpl
+    ): SettingsRepository
 
 }
