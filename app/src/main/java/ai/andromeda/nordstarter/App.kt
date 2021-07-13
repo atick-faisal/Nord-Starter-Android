@@ -1,12 +1,15 @@
 package ai.andromeda.nordstarter
 
 import ai.andromeda.nordstarter.services.background.DefaultWorker
-import ai.andromeda.nordstarter.utils.*
+import ai.andromeda.nordstarter.utils.DEFAULT_PERIODIC_WORK
+import ai.andromeda.nordstarter.utils.DEFAULT_PERIODIC_WORK_INTERVAL
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
+import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -16,6 +19,7 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -26,13 +30,17 @@ class App : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate() {
         super.onCreate()
         initializeLogger()
 
         // TODO: Modify Default Initializations
         createNotificationChannel()
-        delayedInit()
+        setUpAppTheme()
+        delayInit()
     }
 
     private fun initializeLogger() {
@@ -42,7 +50,29 @@ class App : Application(), Configuration.Provider {
         }
     }
 
-    private fun delayedInit() {
+    private fun setUpAppTheme() {
+        CoroutineScope(Dispatchers.Main).launch {
+            var theme: String?
+            withContext(Dispatchers.IO) {
+                theme = getAppTheme()
+            }
+
+            when (theme) {
+                "LIGHT" -> setDefaultNightMode(MODE_NIGHT_NO)
+                "DARK" -> setDefaultNightMode(MODE_NIGHT_YES)
+                else -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+
+            Timber.d("app theme loaded --> [$theme]")
+        }
+    }
+
+    private fun getAppTheme(): String? {
+        return sharedPreferences
+            .getString(getString(R.string.app_theme_key), "SYSTEM")
+    }
+
+    private fun delayInit() {
         CoroutineScope(Dispatchers.Default).launch {
             setUpPeriodicWorks()
         }

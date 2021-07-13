@@ -3,8 +3,7 @@ package ai.andromeda.nordstarter.data.authentication
 import ai.andromeda.nordstarter.data.authentication.model.AuthenticationResponse
 import ai.andromeda.nordstarter.data.authentication.model.LoginBody
 import ai.andromeda.nordstarter.data.authentication.model.RegisterBody
-import ai.andromeda.nordstarter.storage.datastore.UserPreferences
-import kotlinx.coroutines.flow.Flow
+import ai.andromeda.nordstarter.storage.preferences.UserPreferences
 import javax.inject.Inject
 
 class AuthenticationRepositoryImpl @Inject constructor(

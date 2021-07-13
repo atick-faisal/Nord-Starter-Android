@@ -21,6 +21,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
@@ -88,7 +89,10 @@ class MainActivity : AppCompatActivity(),
 
     private fun controlActionBarVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.authenticationFragment) {
+            if (
+                destination.id == R.id.authenticationFragment ||
+                destination.id == R.id.settingsFragment
+            ) {
                 binding?.apply {
                     topAppBar.hide()
                     mainDrawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)

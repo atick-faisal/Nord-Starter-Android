@@ -33,4 +33,12 @@
 
     <!--  permission rationale  -->
     <string name="permission_rationale">Please grant the following permissions in order for the app to work</string>
+
+    <!-- preference titles -->
+    <string name="customization">Customization</string>
+    <string name="theme">Theme</string>
+
+    <!-- app theme key -->
+    <string name="app_theme_key">nord_app_theme</string>
+
 </resources>

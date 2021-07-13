@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/snow_storm_2</item>
         <item name="colorOnSurface">@color/polar_night_0</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/aurora_3</item>
+        <item name="colorSecondary">@color/aurora_1</item>
         <item name="colorSecondaryVariant">@color/aurora_2</item>
         <item name="colorOnSecondary">@color/polar_night_0</item>
         <!-- Status bar color. -->
