@@ -1,6 +1,6 @@
 package ai.andromeda.nordstarter.data.home
 
-import ai.andromeda.nordstarter.storage.datastore.UserPreferences
+import ai.andromeda.nordstarter.storage.preferences.UserPreferences
 import ai.andromeda.nordstarter.storage.room.AppDatabase
 import ai.andromeda.nordstarter.storage.room.ItemDao
 import ai.andromeda.nordstarter.storage.room.entity.Item

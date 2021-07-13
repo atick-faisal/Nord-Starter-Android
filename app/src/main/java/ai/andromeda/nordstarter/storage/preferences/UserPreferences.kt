@@ -1,4 +1,4 @@
-package ai.andromeda.nordstarter.storage.datastore
+package ai.andromeda.nordstarter.storage.preferences
 
 import kotlinx.coroutines.flow.Flow
 

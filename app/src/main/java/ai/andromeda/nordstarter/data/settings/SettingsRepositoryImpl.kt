@@ -1,6 +1,6 @@
 package ai.andromeda.nordstarter.data.settings
 
-import ai.andromeda.nordstarter.storage.datastore.UserPreferences
+import ai.andromeda.nordstarter.storage.preferences.UserPreferences
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
