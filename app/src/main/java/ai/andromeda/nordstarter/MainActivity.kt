@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(),
         askForPermissions()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.default_toobar_menu, menu)
         return true
     }
