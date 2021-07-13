@@ -51,9 +51,8 @@ class App : Application(), Configuration.Provider {
     }
 
     private fun setUpAppTheme() {
-        var theme: String? = null
-
         CoroutineScope(Dispatchers.Main).launch {
+            var theme: String?
             withContext(Dispatchers.IO) {
                 theme = getAppTheme()
             }
@@ -63,9 +62,9 @@ class App : Application(), Configuration.Provider {
                 "DARK" -> setDefaultNightMode(MODE_NIGHT_YES)
                 else -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
             }
-        }
 
-        Timber.d("app theme loaded --> [$theme]")
+            Timber.d("app theme loaded --> [$theme]")
+        }
     }
 
     private fun getAppTheme(): String? {
