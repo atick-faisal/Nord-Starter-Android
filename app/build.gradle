@@ -76,7 +76,7 @@ dependencies {
 
     def coroutine_version = "1.4.2"
     def room_version = "2.3.0"
-    def preferences_version = '1.0.0-rc01'
+    def data_store_version = "1.0.0-rc01"
     def work_version = "2.5.0"
     def hilt_work_version = "1.0.0"
     def serializer_version = "1.2.1"
@@ -85,6 +85,7 @@ dependencies {
     def timber_version = "4.7.1"
     def permissions_version = "3.0.0"
     def firebase_version = "28.2.1"
+    def preferences_version = "1.1.1"
 
     implementation "androidx.core:core-ktx:$ktx_version"
     implementation "androidx.appcompat:appcompat:$app_compat_version"
@@ -119,7 +120,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // ... DataStore
-    implementation "androidx.datastore:datastore-preferences:$preferences_version"
+    implementation "androidx.datastore:datastore-preferences:$data_store_version"
 
     // ... Work Manager
     implementation "androidx.work:work-runtime-ktx:$work_version"
@@ -154,6 +155,9 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-analytics'
+
+    // ... Preferences
+    implementation "androidx.preference:preference-ktx:$preferences_version"
 
     // ... Test
     testImplementation 'junit:junit:4.13.2'

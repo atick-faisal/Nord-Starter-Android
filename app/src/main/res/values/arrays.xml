@@ -1,0 +1,15 @@
+<resources>
+    <!-- Theme Preference -->
+    <string-array name="theme_entries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System default</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>LIGHT</item>
+        <item>DARK</item>
+        <item>SYSTEM</item>
+    </string-array>
+
+</resources>

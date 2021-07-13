@@ -88,7 +88,10 @@ class MainActivity : AppCompatActivity(),
 
     private fun controlActionBarVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.authenticationFragment) {
+            if (
+                destination.id == R.id.authenticationFragment ||
+                destination.id == R.id.settingsFragment
+            ) {
                 binding?.apply {
                     topAppBar.hide()
                     mainDrawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
