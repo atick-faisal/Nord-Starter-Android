@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ItemViewHolder(
     private val binding: ItemDummyBinding,
     private inline val onItemClick: (Long) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
         fun from(parent: ViewGroup, onItemClick: (Long) -> Unit): ItemViewHolder {
@@ -21,9 +21,11 @@ class ItemViewHolder(
     }
 
     fun bind(item: Item) {
-        binding.itemName.text = item.name
-        binding.itemDescription.text = item.description
-        binding.itemLogo.loadCircularImage(item.logo)
-        binding.root.setOnClickListener { onItemClick(item.id) }
+        binding.apply {
+            itemName.text = item.name
+            itemDescription.text = item.description
+            itemLogo.loadCircularImage(item.logo)
+            root.setOnClickListener { onItemClick(item.id) }
+        }
     }
 }
