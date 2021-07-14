@@ -2,8 +2,10 @@ package ai.andromeda.nordstarter.ui.home
 
 import ai.andromeda.nordstarter.R
 import ai.andromeda.nordstarter.base.ui.BaseFragment
+import ai.andromeda.nordstarter.base.ui.BaseViewModel
 import ai.andromeda.nordstarter.databinding.FragmentHomeBinding
 import ai.andromeda.nordstarter.extensions.hide
+import ai.andromeda.nordstarter.extensions.observe
 import ai.andromeda.nordstarter.extensions.showToast
 import ai.andromeda.nordstarter.ui.home.adapter.ItemAdapter
 import ai.andromeda.nordstarter.utils.Resource
@@ -27,16 +29,28 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         ItemAdapter(::onItemClick)
     }
 
+    override val baseViewModel: BaseViewModel
+        get() = viewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
+        setHasOptionsMenu(true)
 
+        initializeViews()
+        observeLiveData()
+    }
+
+    private fun initializeViews() {
         binding?.apply {
             listDummyItem.adapter = itemAdapter
         }
+    }
 
-        viewModel.loginStatus.observe(viewLifecycleOwner, { loginStatus ->
-            Timber.d("logging status [$loginStatus]")
+    override fun observeLiveData() {
+        super.observeLiveData()
+
+        observe(viewModel.loginStatus) { loginStatus ->
             if (!loginStatus) {
                 Timber.d("user not authorized ... ")
                 findNavController().navigate(
@@ -48,11 +62,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     splashView.hide()
                 }
             }
-        })
-    }
+        }
 
-    override fun observerLiveData() {
-        viewModel.items.observe(this, { result ->
+        observe(viewModel.items) { result ->
             itemAdapter.submitList(result.data)
             when (result) {
                 is Resource.Loading -> {
@@ -68,21 +80,24 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     Timber.d("data successfully loaded ... ")
                 }
             }
-        })
-
-        viewModel.toastMessage.observe(this, { message ->
-            context?.showToast(message)
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        Timber.d("options menu created")
         loadingProgress = menu.findItem(R.id.userInitial).actionView
             .findViewById(R.id.loading_progress)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun onItemClick(id: Long) {
-        viewModel.toastMessage.value = "ID: $id"
+        context?.showToast("ID: $id")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("on resume called")
+        loadingProgress?.hide()
     }
 
     override fun onDestroyView() {
