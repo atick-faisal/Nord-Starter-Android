@@ -17,4 +17,9 @@
         android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
 
+    <item
+        android:id="@+id/logoutFragment"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout"/>
+
 </menu>

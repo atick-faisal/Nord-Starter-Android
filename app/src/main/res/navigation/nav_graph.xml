@@ -29,5 +29,16 @@
         android:id="@+id/settingsFragment"
         android:name="ai.andromeda.nordstarter.ui.settings.SettingsFragment"
         android:label="Settings" />
+    <fragment
+        android:id="@+id/logoutFragment"
+        android:name="ai.andromeda.nordstarter.ui.logout.LogoutFragment"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout" >
+        <action
+            android:id="@+id/action_logoutFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment"
+            app:popUpTo="@id/logoutFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>
