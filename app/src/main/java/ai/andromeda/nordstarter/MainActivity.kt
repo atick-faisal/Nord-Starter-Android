@@ -8,8 +8,6 @@ import ai.andromeda.nordstarter.utils.DEFAULT_FCM_SUBSCRIPTION_TOPIC
 import ai.andromeda.nordstarter.utils.RC_SOME_PERMISSIONS
 import android.Manifest
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
@@ -18,7 +16,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -72,16 +69,6 @@ class MainActivity : AppCompatActivity(),
         askForPermissions()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.default_toobar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(navController) ||
-                super.onOptionsItemSelected(item)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         return navigateUp(navController, appBarConfiguration) ||
                 super.onSupportNavigateUp()
@@ -90,8 +77,7 @@ class MainActivity : AppCompatActivity(),
     private fun controlActionBarVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (
-                destination.id == R.id.authenticationFragment ||
-                destination.id == R.id.settingsFragment
+                destination.id == R.id.authenticationFragment
             ) {
                 binding?.apply {
                     topAppBar.hide()

@@ -12,9 +12,11 @@ import ai.andromeda.nordstarter.utils.Resource
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -84,10 +86,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        Timber.d("options menu created")
+        inflater.inflate(R.menu.home_app_bar_menu, menu)
         loadingProgress = menu.findItem(R.id.userInitial).actionView
             .findViewById(R.id.loading_progress)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return item.onNavDestinationSelected(findNavController()) ||
+                super.onOptionsItemSelected(item)
     }
 
     private fun onItemClick(id: Long) {
