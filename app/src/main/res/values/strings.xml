@@ -10,6 +10,7 @@
     <string name="default_user_initial">A</string>
 
     <!--  home fragment  -->
+    <string name="home">Home</string>
     <string name="dummy_items">Dummy Items</string>
 
     <!--  authentication fragment  -->
