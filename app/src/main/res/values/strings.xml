@@ -23,6 +23,9 @@
     <string name="email_address">Email Address</string>
     <string name="first_and_last_name">First and Last Name</string>
 
+    <!-- logout fragment -->
+    <string name="logout">Logout</string>
+
     <!-- notification channels  -->
     <!-- TODO: Change the default notification channel information -->
     <string name="default_channel_id">ai.andromeda.nord.default</string>
