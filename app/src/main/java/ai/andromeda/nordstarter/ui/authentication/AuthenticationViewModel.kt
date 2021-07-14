@@ -5,6 +5,7 @@ import ai.andromeda.nordstarter.data.authentication.AuthenticationRepository
 import ai.andromeda.nordstarter.data.authentication.model.AuthenticationResponse
 import ai.andromeda.nordstarter.data.authentication.model.LoginBody
 import ai.andromeda.nordstarter.data.authentication.model.RegisterBody
+import ai.andromeda.nordstarter.utils.Event
 import ai.andromeda.nordstarter.utils.isEmailValid
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -28,8 +29,8 @@ class AuthenticationViewModel @Inject constructor(
     val register: LiveData<AuthenticationResponse>
         get() = _register
 
-    private val _isLoginStatusSaved: MutableLiveData<Boolean> = MutableLiveData()
-    val isLoginStatusSaved: LiveData<Boolean>
+    private val _isLoginStatusSaved: MutableLiveData<Event<Boolean>> = MutableLiveData()
+    val isLoginStatusSaved: LiveData<Event<Boolean>>
         get() = _isLoginStatusSaved
 
     fun login(
@@ -75,7 +76,7 @@ class AuthenticationViewModel @Inject constructor(
     fun saveLoginStatus(loginStatus: Boolean) {
         viewModelScope.launch {
             authenticationRepository.saveLoginStatus(loginStatus)
-            _isLoginStatusSaved.value = true
+            _isLoginStatusSaved.value = Event(true)
         }
     }
 }

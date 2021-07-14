@@ -2,11 +2,9 @@ package ai.andromeda.nordstarter.ui.authentication
 
 import ai.andromeda.nordstarter.R
 import ai.andromeda.nordstarter.base.ui.BaseFragment
+import ai.andromeda.nordstarter.base.ui.BaseViewModel
 import ai.andromeda.nordstarter.databinding.FragmentAuthenticationBinding
-import ai.andromeda.nordstarter.extensions.getValue
-import ai.andromeda.nordstarter.extensions.hide
-import ai.andromeda.nordstarter.extensions.show
-import ai.andromeda.nordstarter.extensions.showToast
+import ai.andromeda.nordstarter.extensions.*
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -20,55 +18,55 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
     private val viewModel: AuthenticationViewModel by viewModels()
     private var binding: FragmentAuthenticationBinding? = null
 
+    override val baseViewModel: BaseViewModel
+        get() = viewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAuthenticationBinding.bind(view)
 
+        initializeViews()
+        observeLiveData()
+    }
+
+    private fun initializeViews() {
         binding?.apply {
             userTypeButton.setOnClickListener { toggleAuthenticationType() }
             authenticationButton.setOnClickListener { authenticate() }
         }
     }
 
-    override fun observerLiveData() {
-        viewModel.login.observe(this, { response ->
-            response?.let {
-                if (it.success) {
-                    Timber.d("successfully logged in ...")
-                    viewModel.saveLoginStatus(true)
-                }
-                else {
-                    Timber.d("login failed!")
-                    viewModel.saveLoginStatus(false)
-                }
-            }
-        })
+    override fun observeLiveData() {
+        super.observeLiveData()
 
-        viewModel.register.observe(this, { response ->
-            response?.let {
-                if (it.success) {
-                    Timber.d("successfully logged in ...")
-                    viewModel.saveLoginStatus(true)
-                }
-                else {
-                    Timber.d("login failed!")
-                    viewModel.saveLoginStatus(false)
-                }
+        observe(viewModel.login) { response ->
+            if (response.success) {
+                Timber.d("successfully logged in ...")
+                viewModel.saveLoginStatus(true)
+            } else {
+                Timber.d("login failed!")
+                viewModel.saveLoginStatus(false)
             }
-        })
+        }
 
-        viewModel.isLoginStatusSaved.observe(this, { isLoginStatusSaved ->
+        observe(viewModel.register) { response ->
+            if (response.success) {
+                Timber.d("successfully logged in ...")
+                viewModel.saveLoginStatus(true)
+            } else {
+                Timber.d("login failed!")
+                viewModel.saveLoginStatus(false)
+            }
+        }
+
+        observeEvent(viewModel.isLoginStatusSaved) { isLoginStatusSaved ->
             if (isLoginStatusSaved) {
                 Timber.d("login session saved ... ")
                 findNavController().navigate(
                     AuthenticationFragmentDirections.actionAuthenticationFragmentToHomeFragment()
                 )
             }
-        })
-
-        viewModel.toastMessage.observe(this, { message ->
-            context?.showToast(message)
-        })
+        }
     }
 
     private fun authenticate() {
@@ -90,7 +88,7 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
                 }
             }
         } else {
-            viewModel.toastMessage.value = getString(R.string.no_internet)
+            context?.showToast(getString(R.string.no_internet))
         }
     }
 
