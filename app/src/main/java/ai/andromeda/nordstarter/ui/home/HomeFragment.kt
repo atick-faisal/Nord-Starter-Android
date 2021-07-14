@@ -62,6 +62,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 Timber.d("user is authorized ... ")
                 binding?.apply {
                     splashView.hide()
+                    // TODO: Load items only when user is authorized
+                    viewModel.loadItems(30)
                 }
             }
         }
