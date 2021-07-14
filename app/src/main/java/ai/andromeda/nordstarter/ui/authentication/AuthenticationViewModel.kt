@@ -21,12 +21,12 @@ class AuthenticationViewModel @Inject constructor(
 
     var alreadyUser: Boolean = false
 
-    private val _login: MutableLiveData<AuthenticationResponse> = MutableLiveData()
-    val login: LiveData<AuthenticationResponse>
+    private val _login = MutableLiveData<Event<AuthenticationResponse>>()
+    val login: LiveData<Event<AuthenticationResponse>>
         get() = _login
 
-    private val _register: MutableLiveData<AuthenticationResponse> = MutableLiveData()
-    val register: LiveData<AuthenticationResponse>
+    private val _register = MutableLiveData<Event<AuthenticationResponse>>()
+    val register: LiveData<Event<AuthenticationResponse>>
         get() = _register
 
     private val _isLoginStatusSaved: MutableLiveData<Event<Boolean>> = MutableLiveData()
@@ -38,14 +38,16 @@ class AuthenticationViewModel @Inject constructor(
         password: String
     ) {
         // TODO: Implement proper login logic
-        _login.value = AuthenticationResponse(true)
+        _login.value = Event(AuthenticationResponse(true))
 
         if (isEmailValid(email)) {
             viewModelScope.launch {
-                _login.value = authenticationRepository.login(
-                    LoginBody(
-                        email = email,
-                        password = password
+                _login.value = Event(
+                    authenticationRepository.login(
+                        LoginBody(
+                            email = email,
+                            password = password
+                        )
                     )
                 )
             }
@@ -58,15 +60,17 @@ class AuthenticationViewModel @Inject constructor(
         password: String
     ) {
         // TODO: Implement proper registration logic
-        _register.value = AuthenticationResponse(true)
+        _register.value = Event(AuthenticationResponse(true))
 
         if (isEmailValid(email)) {
             viewModelScope.launch {
-                _register.value = authenticationRepository.register(
-                    RegisterBody(
-                        name = name,
-                        email = email,
-                        password = password
+                _register.value = Event(
+                    authenticationRepository.register(
+                        RegisterBody(
+                            name = name,
+                            email = email,
+                            password = password
+                        )
                     )
                 )
             }

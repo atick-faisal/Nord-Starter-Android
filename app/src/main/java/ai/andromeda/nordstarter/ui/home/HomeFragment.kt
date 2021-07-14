@@ -6,6 +6,7 @@ import ai.andromeda.nordstarter.base.ui.BaseViewModel
 import ai.andromeda.nordstarter.databinding.FragmentHomeBinding
 import ai.andromeda.nordstarter.extensions.hide
 import ai.andromeda.nordstarter.extensions.observe
+import ai.andromeda.nordstarter.extensions.observeEvent
 import ai.andromeda.nordstarter.extensions.showToast
 import ai.andromeda.nordstarter.ui.home.adapter.ItemAdapter
 import ai.andromeda.nordstarter.utils.Resource
@@ -52,7 +53,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     override fun observeLiveData() {
         super.observeLiveData()
 
-        observe(viewModel.loginStatus) { loginStatus ->
+        observeEvent(viewModel.loginStatus) { loginStatus ->
             if (!loginStatus) {
                 Timber.d("user not authorized ... ")
                 findNavController().navigate(

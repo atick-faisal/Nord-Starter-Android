@@ -39,7 +39,7 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
     override fun observeLiveData() {
         super.observeLiveData()
 
-        observe(viewModel.login) { response ->
+        observeEvent(viewModel.login) { response ->
             if (response.success) {
                 Timber.d("successfully logged in ...")
                 viewModel.saveLoginStatus(true)
@@ -49,7 +49,7 @@ class AuthenticationFragment : BaseFragment(R.layout.fragment_authentication) {
             }
         }
 
-        observe(viewModel.register) { response ->
+        observeEvent(viewModel.register) { response ->
             if (response.success) {
                 Timber.d("successfully logged in ...")
                 viewModel.saveLoginStatus(true)
