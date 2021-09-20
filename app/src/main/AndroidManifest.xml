@@ -44,7 +44,8 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/fcm_channel_id" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

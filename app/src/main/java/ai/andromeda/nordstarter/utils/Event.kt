@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package ai.andromeda.nordstarter.utils
 
 // Event wrapper for Single Events

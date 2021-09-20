@@ -4,7 +4,6 @@ import ai.andromeda.nordstarter.extensions.observeEvent
 import ai.andromeda.nordstarter.extensions.showToast
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
