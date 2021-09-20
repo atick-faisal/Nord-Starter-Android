@@ -11,7 +11,7 @@ fun isUserNameValid(
         minLength: Int = 3,
         maxLength: Int = 20
 ): Boolean {
-    val userNameValidatorRegex = "^[A-Za-z]\\w{$minLength,$maxLength}$"
+    val userNameValidatorRegex = "^[A-Za-z]\\w*$minLength,$maxLength}$"
     val pattern = Pattern.compile(userNameValidatorRegex)
     return pattern.matcher(userName).matches()
 }
