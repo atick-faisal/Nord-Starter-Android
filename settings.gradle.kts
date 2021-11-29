@@ -3,9 +3,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        maven { setUrl("https://jitpack.io") }
     }
 }
 rootProject.name = "Jetpack Compose Starter"
-include ':app'
-include ':core'
+include(":app")
+include(":core")
